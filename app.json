@@ -2,6 +2,7 @@
   "expo": {
     "name": "perpus-app",
     "slug": "perpus-app",
+    "scheme": "perpusapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
