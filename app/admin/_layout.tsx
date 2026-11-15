@@ -1,16 +1,33 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View, Image, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import { supabase } from "../../lib/supabase";
 
 export default function AdminLayout() {
+  const handleLogout = () => {
+    Alert.alert("Logout", "Keluar dari aplikasi?", [
+      { text: "Batal", style: "cancel" },
+      {
+        text: "Ya",
+        onPress: () => supabase.auth.signOut(),
+        style: "destructive",
+      },
+    ]);
+  };
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#43B3AE",
         headerShown: true,
-        headerStyle: {
-          backgroundColor: "#43B3AE",
-        },
+        headerStyle: { backgroundColor: "#43B3AE" },
         headerTitle: () => (
           <View style={styles.headerContainer}>
             <Image
@@ -52,6 +69,18 @@ export default function AdminLayout() {
           ),
         }}
       />
+
+      {/* TAMBAHKAN TAB LAPORAN DI SINI */}
+      <Tabs.Screen
+        name="reports"
+        options={{
+          title: "Laporan",
+          tabBarIcon: ({ color }: any) => (
+            <Ionicons name="document-text" size={24} color={color} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="users"
         options={{
@@ -66,10 +95,7 @@ export default function AdminLayout() {
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
+  headerContainer: { flexDirection: "row", alignItems: "center" },
   headerLogo: {
     width: 32,
     height: 32,
@@ -77,9 +103,5 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: "#fff",
   },
-  headerText: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
+  headerText: { color: "#fff", fontSize: 20, fontWeight: "bold" },
 });

@@ -1,27 +1,8 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  Text,
-  View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
-import { supabase } from "../../lib/supabase";
+import { Text, View, Image, StyleSheet } from "react-native";
 
-export default function PetugasLayout() {
-  const handleLogout = () => {
-    Alert.alert("Logout", "Keluar dari aplikasi?", [
-      { text: "Batal", style: "cancel" },
-      {
-        text: "Ya",
-        onPress: () => supabase.auth.signOut(),
-        style: "destructive",
-      },
-    ]);
-  };
-
+export default function AdminLayout() {
   return (
     <Tabs
       screenOptions={{
@@ -42,6 +23,7 @@ export default function PetugasLayout() {
         headerShadowVisible: false,
       }}
     >
+      {/* 1. DASHBOARD */}
       <Tabs.Screen
         name="index"
         options={{
@@ -52,6 +34,7 @@ export default function PetugasLayout() {
         }}
       />
 
+      {/* 2. KATALOG */}
       <Tabs.Screen
         name="katalog"
         options={{
@@ -62,6 +45,7 @@ export default function PetugasLayout() {
         }}
       />
 
+      {/* 3. PEMINJAMAN */}
       <Tabs.Screen
         name="loans"
         options={{
@@ -72,35 +56,24 @@ export default function PetugasLayout() {
         }}
       />
 
+      {/* 4. LAPORAN (BARU) */}
       <Tabs.Screen
-        name="users"
+        name="reports"
         options={{
-          title: "Anggota",
+          title: "Laporan",
           tabBarIcon: ({ color }: any) => (
-            <Ionicons name="people" size={24} color={color} />
+            <Ionicons name="document-text" size={24} color={color} />
           ),
         }}
       />
 
+      {/* 5. USER */}
       <Tabs.Screen
-        name="logout"
+        name="users"
         options={{
-          title: "Keluar",
-          tabBarIcon: () => (
-            <Ionicons name="log-out" size={24} color="#dc2626" />
-          ),
-          tabBarButton: (props: any) => (
-            <TouchableOpacity
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingVertical: 5,
-              }}
-              onPress={handleLogout}
-            >
-              {props.children}
-            </TouchableOpacity>
+          title: "User",
+          tabBarIcon: ({ color }: any) => (
+            <Ionicons name="people" size={24} color={color} />
           ),
         }}
       />

@@ -81,7 +81,7 @@ export default function AdminDashboard() {
         }
       >
         <View style={styles.card}>
-          <Text style={styles.greeting}>Halo, Admin! 👋</Text>
+          <Text style={styles.greeting}>Halo, Admin Perpus! 👋</Text>
           <Text style={styles.subGreeting}>
             Berikut adalah ringkasan data perpus hari ini.
           </Text>
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
               <Ionicons name="people" size={24} color="#16a34a" />
             </View>
             <Text style={styles.statNumber}>{stats.members}</Text>
-            <Text style={styles.statLabel}>Anggota</Text>
+            <Text style={styles.statLabel}>Anggota Siswa</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -152,7 +152,7 @@ export default function AdminDashboard() {
               Belum ada data anggota.
             </Text>
           ) : (
-            recentMembers.map((member, index) => (
+            recentMembers.map((member) => (
               <View key={member.id} style={styles.memberItem}>
                 <View style={styles.avatar}>
                   <Text style={styles.avatarText}>
@@ -216,6 +216,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   statLabel: { fontSize: 12, color: "#6b7280", fontWeight: "500" },
+
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
